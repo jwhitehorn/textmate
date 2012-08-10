@@ -47,6 +47,9 @@ fi
 # = Check if boost is installed =
 # ===============================
 
+
+boostdir=$(brew --prefix boost)/include/boost
+
 for dir in "${boostdir:-/usr/include/boost}" /{opt,usr}/local/include/boost; do
 	if [[ ! -L "${builddir}/include/boost" && -d "${dir}" ]]; then
 		mkdir -p "${builddir}/include" && ln -fs "${dir}" "${builddir}/include/boost"
