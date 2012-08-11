@@ -71,11 +71,13 @@ namespace bundles { struct item_t; typedef std::tr1::shared_ptr<item_t> item_ptr
 @property (nonatomic, readonly) NSString* identifier;
 @property (nonatomic, assign) BOOL fileBrowserHidden;
 @property (nonatomic, readonly) NSString* documentPath;
+@property (nonatomic, readonly) NSString* documentFilePath;
 @property (nonatomic, readonly) NSString* fileBrowserPath;
 @property (nonatomic, readonly) NSString* projectPath;
 @property (nonatomic, readonly) NSString* untitledSavePath;
 
 + (DocumentController*)controllerForDocument:(document::document_ptr const&)aDocument;
++ (DocumentController*)controllerForPath:(std::string const&)aPath;
 + (DocumentController*)controllerForUUID:(oak::uuid_t const&)aUUID;
 
 - (id)init;
