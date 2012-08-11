@@ -2,6 +2,10 @@
 
 This repository contains the source code for TextMate 2, a text editor for OS X 10.7+.
 
+# Download
+
+To get started right away with TextMate, you can download a perfectly free binary build from [here](https://github.com/jwhitehorn/textmate/downloads).
+
 # Building
 
 To bootstrap the build you need to run `./configure` (in the root of the source tree). You can set a few (environment) variables read by this script that change the generated build file:
@@ -108,19 +112,6 @@ Note that `ninja TextMate/clean` only cleans the TextMate build folder (`$buildd
 To clean everything run:
 
 	ninja -t clean
-
-# Contributing
-
-You can send pull requests via GitHub. Patches should:
-
-1. Follow the style of the existing code.
-2. One commit should do exactly one thing.
-3. Commit messages should start with a summary line below 80 characters followed by a blank line, and then the reasoning/analysis for why the change was made (if appropriate).
-4. Commits that fix a bug in a previous commit (which has already been merged) should start with `fixup!` and then the summary line of the commit it fixes. If you are writing your commit message in TextMate then type `fix⇥` to get the prefix and a menu allowing you to pick the summary line from one of the last 15 commits.
-5. Rebase your branch against the upstream’s master. We don’t want to pull redundant merge commits.
-6. **Be clear about what license applies to your patch:** The files within this repository are under the [GPL 3][] (or later) but (as the original creator) we are still allowed to create non-free derivatives. However, if patches are given to us under GPL then those cannot make it into any non-free derivatives we may later wish to create. So to make it easier for us (and avoid any legal issues) we prefer if patches are released as public domain.
-
-There is both the [textmate-dev][] mailing list and [##textmate][] IRC channel at [freenode.net][] where this project can be discussed.
 
 # Legal
 
