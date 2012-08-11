@@ -20,13 +20,12 @@ const NSInteger BundleItemSelector = 1;
 	std::string const lineNumberText = "Line: " + text::pad(line+1, 4) + "\u2003" /* Em Space */ + "Column: " + text::pad(column+1, 3);
 	std::string const tabSizeText    = std::string(softTabs ? "Soft Tabs:" : "Tab Size:") + "\u2003" /* Em Space */ + text::pad(tabSize, 4);
 	static NSImage* gearImage        = [[NSImage imageNamed:@"Statusbar Gear" inSameBundleAsClass:[self class]] retain];
-	static NSImage* languageIcon     = [[NSImage imageNamed:@"Languages" inSameBundleAsClass:[self class]] retain];
 	static NSImage* splitViewThumb   = [[NSImage imageNamed:@"Horizontal SplitView Thumb" inSameBundleAsClass:[self class]] retain];
 
 	struct sb::cell_t const cellList[] =
 	{
 		sb::cell_t::info(lineNumberText),
-		sb::cell_t::popup([grammarName UTF8String] ?: "-",     @selector(showLanguageSelector:),    self.delegate).set_image(languageIcon).size(110),
+		sb::cell_t::popup([grammarName UTF8String] ?: "-",     @selector(showLanguageSelector:),    self.delegate).size(110),
 		sb::cell_t::popup(gearImage,                           @selector(showBundleItemSelector:),  self.delegate).set_tag(BundleItemSelector),
 		sb::cell_t::popup(tabSizeText,                         @selector(showTabSizeSelector:),     self.delegate),
 		sb::cell_t::popup([symbolName UTF8String] ?: "Symbol", @selector(showSymbolSelector:),      self.delegate).size(200, CGFLOAT_MAX),

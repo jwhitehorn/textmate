@@ -42,6 +42,7 @@ OAK_DEBUG_VAR(FileBrowser_View);
 	scrollView.hasVerticalScroller   = YES;
 	scrollView.hasHorizontalScroller = NO;
 	scrollView.borderType            = NSNoBorder;
+	scrollView.scrollerKnobStyle     = NSScrollerKnobStyleLight;
 	[self addSubview:scrollView];
 
 	outlineView                          = [[[OFBOutlineView alloc] initWithFrame:NSMakeRect(10, 10, scrollView.contentSize.width, scrollView.contentSize.height)] autorelease];
@@ -49,12 +50,17 @@ OAK_DEBUG_VAR(FileBrowser_View);
 	outlineView.allowsMultipleSelection  = YES;
 	outlineView.autoresizesOutlineColumn = NO;
 	outlineView.headerView               = nil;
+	outlineView.backgroundColor          = [NSColor colorWithDeviceRed:0.13 green:0.13 blue:0.13 alpha:1.0];
 
 	scrollView.documentView              = outlineView;
 
 	headerView             = [[[OakStatusBar alloc] initWithFrame:NSZeroRect] autorelease];
 	headerView.borderEdges = sb::border::bottom;
-	[self addSubview:headerView];
+	//[self addSubview:headerView];
+	
+	footerView             = [[[OakStatusBar alloc] initWithFrame:NSZeroRect] autorelease];
+	footerView.dark        = YES;
+	[self addSubview:footerView];
 
 	NSCell* cell       = [[OFBPathInfoCell new] autorelease];
 	cell.lineBreakMode = NSLineBreakByTruncatingMiddle;
@@ -92,8 +98,9 @@ OAK_DEBUG_VAR(FileBrowser_View);
 
 - (void)resizeSubviewsWithOldSize:(NSSize)oldSize
 {
-	headerView.frame                      = NSMakeRect(0, NSHeight(self.frame) - OakStatusBarHeight, NSWidth(self.frame), OakStatusBarHeight);
-	outlineView.enclosingScrollView.frame = NSMakeRect(0, 0, NSWidth(self.frame), NSHeight(self.frame) - NSHeight(headerView.frame));
+	//headerView.frame                      = NSMakeRect(0, NSHeight(self.frame) - OakStatusBarHeight, NSWidth(self.frame), OakStatusBarHeight);
+	footerView.frame                      = NSMakeRect(0, 0, NSWidth(self.frame), OakStatusBarHeight);
+	outlineView.enclosingScrollView.frame = NSMakeRect(0, OakStatusBarHeight, NSWidth(self.frame), NSHeight(self.frame) - OakStatusBarHeight);
 }
 
 - (BOOL)isOpaque
@@ -108,7 +115,8 @@ OAK_DEBUG_VAR(FileBrowser_View);
 
 - (void)displayMenu:(NSMenu*)aMenu fromHeaderColumn:(fb::header_column)columnTag selectedIndex:(NSUInteger)index popup:(BOOL)popup
 {
-	[headerView showMenu:aMenu withSelectedIndex:index forCellWithTag:columnTag font:[NSFont controlContentFontOfSize:12.0] popup:popup];
+	//[headerView showMenu:aMenu withSelectedIndex:index forCellWithTag:columnTag font:[NSFont controlContentFontOfSize:12.0] popup:popup];
+	[footerView showMenu:aMenu withSelectedIndex:index forCellWithTag:columnTag font:[NSFont controlContentFontOfSize:12.0] popup:popup];
 }
 
 - (NSRect)iconFrameForEntry:(id)anEntry
@@ -157,7 +165,8 @@ static inline NSImage* Pressed (NSString* name) { return Image([NSString stringW
 		else	cellList.insert(cellList.begin(), thumb);
 	}
 
-	[headerView setCells:cellList];
+	//[headerView setCells:cellList];
+	[footerView setCells:cellList];
 }
 
 - (void)setShowsResizeIndicator:(BOOL)flag onRight:(BOOL)onRight

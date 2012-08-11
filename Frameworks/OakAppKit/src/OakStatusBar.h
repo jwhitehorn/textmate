@@ -2,7 +2,7 @@
 
 @class OakStatusBar;
 
-const CGFloat OakStatusBarHeight = 16;
+const CGFloat OakStatusBarHeight = 24;
 
 namespace sb
 {
@@ -132,9 +132,11 @@ namespace sb
 {
 	std::vector<sb::cell_t> cells;
 	NSInteger borderEdges;
+	BOOL dark;
 }
 @property (nonatomic, readonly) CGFloat minimumWidth;
 @property (nonatomic, assign) NSInteger borderEdges;
+@property (nonatomic, assign) BOOL dark;
 - (void)setCells:(std::vector<sb::cell_t> const&)newCells;
 - (void)showMenu:(NSMenu*)menu withSelectedIndex:(NSUInteger)index forCellWithTag:(int)cellTag font:(NSFont*)font popup:(BOOL)isPopup;
 @end

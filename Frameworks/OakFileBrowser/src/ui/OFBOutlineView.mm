@@ -47,6 +47,22 @@
 	return [menuDelegate menuForOutlineView:self];
 }
 
+// ===================
+// = Selection Color =
+// ===================
+
+- (id)_highlightColorForCell:(NSCell *)cell {
+	return nil;
+}
+
+- (void)highlightSelectionInClipRect:(NSRect)theClipRect {
+	NSGradient *gradient = [[NSGradient alloc] initWithColorsAndLocations:[NSColor colorWithDeviceRed:0.53 green:0.77 blue:0.96 alpha:1.0], 0.0f, [NSColor colorWithDeviceRed:0.17 green:0.61 blue:0.91 alpha:1.0], 0.1f, [NSColor colorWithDeviceRed:0.13 green:0.43 blue:0.84 alpha:1.0], 1.0f, nil];
+	[[self selectedRowIndexes] enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
+		NSRect rowRect = NSInsetRect([self rectOfRow:idx], 0, 0);
+		[gradient drawInRect:rowRect angle:90];
+	}];
+}
+
 // =============================
 // = Accepting First Responder =
 // =============================

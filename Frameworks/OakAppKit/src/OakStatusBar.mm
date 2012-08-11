@@ -10,7 +10,7 @@
 @end
 
 @implementation OakStatusBar
-@synthesize borderEdges;
+@synthesize borderEdges, dark;
 
 - (id)initWithFrame:(NSRect)frame
 {
@@ -68,9 +68,9 @@
 		if(cell.padding != -1)
 		{
 			if(cell.image)
-				cell.padding = 3;
-			else if(!cell.text.empty())
 				cell.padding = 5;
+			else if(!cell.text.empty())
+				cell.padding = 7;
 		}
 		else
 		{
@@ -98,7 +98,7 @@
 		{
 			sb::cell_t separator;
 			separator.min   = separator.max = 1;
-			separator.image = [NSImage imageNamed:@"Statusbar Separator" inSameBundleAsClass:[OakStatusBar class]];
+			separator.image = [NSImage imageNamed:(dark ? @"Statusbar Separator Dark" : @"Statusbar Separator") inSameBundleAsClass:[OakStatusBar class]];
 			cells.push_back(separator);
 		}
 	}
@@ -141,8 +141,8 @@ static std::vector<cell_layout_t> layout (CGFloat frameWidth, std::vector<sb::ce
 {
 	std::vector<layer_t> newLayout;
 
-	NSImage* backgroundImage = [NSImage imageNamed:@"Statusbar Background" inSameBundleAsClass:[OakStatusBar class]];
-
+	NSImage* backgroundImage = [NSImage imageNamed:(dark ? @"Statusbar Background Dark" : @"Statusbar Background") inSameBundleAsClass:[OakStatusBar class]];
+	
 	CGFloat y = 0;
 	if(borderEdges & sb::border::bottom)
 	{
@@ -211,7 +211,7 @@ static std::vector<cell_layout_t> layout (CGFloat frameWidth, std::vector<sb::ce
 			}
 			layer_t layer;
 			CGFloat textHeight = 13;
-			layer.rect = NSMakeRect(offset, (borderEdges & sb::border::bottom) ? 2 : 1, width, textHeight);
+			layer.rect = NSMakeRect(offset, (borderEdges & sb::border::bottom) ? 7 : 6, width, textHeight);
 			layer.text = [NSString stringWithCxxString:cell.text];
 			newLayout.push_back(layer);
 		}
