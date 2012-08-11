@@ -11,7 +11,12 @@ To bootstrap the build you need to run `./configure` (in the root of the source 
 
 In the simplest case you would run:
 
+	git clone https://github.com/textmate/textmate.git
+	cd textmate
+	git submodule update --init
 	./configure && ninja
+
+Please note that if you downloaded the source code (rather than cloned via git) you likely miss the submodules and the build will therefor fail.
 
 ## Prerequisites
 
@@ -33,23 +38,30 @@ If `port` fails with a build error then likely you need to agree (system-wide) t
 
 You can also install the above using [homebrew][]:
 
-	brew install --HEAD https://raw.github.com/adamv/homebrew-alt/master/head-only/ninja.rb
-	brew install ragel boost multimarkdown hg
+	brew install ragel boost multimarkdown hg ninja
 
 In practice `hg` ([mercurial][]) is only required for the SCM library’s tests so you can skip this dependency if you don’t mind a failing test.
 
 ### OS X 10.7 (Lion)
 
-If you are on OS X 10.7 you need [clang 3.2][] and the [proctools][] package (contains `pgrep` and `pkill` used by the “relaunch” build targets).
+If you are on OS X 10.7 you need `pgrep` and `pkill` (used by the “relaunch” build targets). To install using [MacPorts][]:
 
-To install using [MacPorts][]:
+	sudo port install proctools
 
-	sudo port install clang-3.2 clang_select proctools
+Or using [homebrew][]:
+
+	brew install proctools
+
+### Clang 3.2 / 4.0
+
+You also need a recent version of clang. This should be included with Xcode 4.4+ (available for both Lion and Mountain Lion). If don’t have it, you can build [clang 3.2][] from [MacPorts][]:
+
+	sudo port install clang-3.2 clang_select
 	sudo port select clang mp-clang-3.2
 
-Or (for `pgrep` and `pkill`) using [homebrew][]:
-
-	brew install pgrep
+Or using [homebrew][]:
+ 
+	brew install --HEAD llvm --with-clang
 
 ## Building from within TextMate
 
@@ -122,7 +134,6 @@ TextMate is a trademark of Allan Odgaard.
 [ragel]:         http://www.complang.org/ragel/
 [mercurial]:     http://mercurial.selenic.com/
 [clang 3.2]:     http://clang.llvm.org/
-[proctools]:     http://proctools.sourceforge.net/
 [MacPorts]:      http://www.macports.org/
 [homebrew]:      http://mxcl.github.com/homebrew/
 [NinjaBundle]:   https://github.com/avian/ninja.tmbundle
