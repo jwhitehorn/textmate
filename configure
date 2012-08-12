@@ -16,13 +16,10 @@ function error () { printf >&2 "%s\n\nPlease see README.md for build instruction
 
 name=TextMate
 ver=2.0
-rev=1
+rev=10000
 min_os=10.7
 
-rev=$(( $(curl -sf "${rest_api}/releases/nightly/revision")+1 )) || \
-	if test -d .git && which -s git; then
-		rev=$(git log --oneline master | wc -l)
-	fi
+rev=$(( $rev + $(git log --oneline master | wc -l) ))
 
 # ===============================================
 # = Find clang via xcrun, MacPorts, or Homebrew =
