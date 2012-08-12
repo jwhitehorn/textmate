@@ -50,7 +50,7 @@ OAK_DEBUG_VAR(FileBrowser_View);
 	outlineView.allowsMultipleSelection  = YES;
 	outlineView.autoresizesOutlineColumn = NO;
 	outlineView.headerView               = nil;
-	outlineView.backgroundColor          = [NSColor colorWithDeviceRed:0.13 green:0.13 blue:0.13 alpha:1.0];
+	outlineView.backgroundColor          = [NSColor colorWithDeviceRed:0.183 green:0.183 blue:0.183 alpha:1.0];
 
 	scrollView.documentView              = outlineView;
 
