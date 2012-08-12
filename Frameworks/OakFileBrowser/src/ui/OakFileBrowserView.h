@@ -21,8 +21,6 @@ namespace fb
 
 	// These two properties are retained only as subviews
 	OFBOutlineView* outlineView;
-	OakStatusBar* headerView;
-	OakStatusBar* footerView;
 
 	id delegate;
 	NSResponder* persistentNextResponder;

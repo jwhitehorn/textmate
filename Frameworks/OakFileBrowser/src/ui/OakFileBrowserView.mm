@@ -54,14 +54,6 @@ OAK_DEBUG_VAR(FileBrowser_View);
 
 	scrollView.documentView              = outlineView;
 
-	headerView             = [[[OakStatusBar alloc] initWithFrame:NSZeroRect] autorelease];
-	headerView.borderEdges = sb::border::bottom;
-	//[self addSubview:headerView];
-	
-	footerView             = [[[OakStatusBar alloc] initWithFrame:NSZeroRect] autorelease];
-	footerView.dark        = YES;
-	[self addSubview:footerView];
-
 	NSCell* cell       = [[OFBPathInfoCell new] autorelease];
 	cell.lineBreakMode = NSLineBreakByTruncatingMiddle;
 	[cell setEditable:YES];
@@ -98,9 +90,7 @@ OAK_DEBUG_VAR(FileBrowser_View);
 
 - (void)resizeSubviewsWithOldSize:(NSSize)oldSize
 {
-	//headerView.frame                      = NSMakeRect(0, NSHeight(self.frame) - OakStatusBarHeight, NSWidth(self.frame), OakStatusBarHeight);
-	footerView.frame                      = NSMakeRect(0, 0, NSWidth(self.frame), OakStatusBarHeight);
-	outlineView.enclosingScrollView.frame = NSMakeRect(0, OakStatusBarHeight, NSWidth(self.frame), NSHeight(self.frame) - OakStatusBarHeight);
+   outlineView.enclosingScrollView.frame = NSMakeRect(0, 0, NSWidth(self.frame), NSHeight(self.frame));
 }
 
 - (BOOL)isOpaque
@@ -115,8 +105,7 @@ OAK_DEBUG_VAR(FileBrowser_View);
 
 - (void)displayMenu:(NSMenu*)aMenu fromHeaderColumn:(fb::header_column)columnTag selectedIndex:(NSUInteger)index popup:(BOOL)popup
 {
-	//[headerView showMenu:aMenu withSelectedIndex:index forCellWithTag:columnTag font:[NSFont controlContentFontOfSize:12.0] popup:popup];
-	[footerView showMenu:aMenu withSelectedIndex:index forCellWithTag:columnTag font:[NSFont controlContentFontOfSize:12.0] popup:popup];
+
 }
 
 - (NSRect)iconFrameForEntry:(id)anEntry
@@ -164,9 +153,7 @@ static inline NSImage* Pressed (NSString* name) { return Image([NSString stringW
 				cellList.push_back(thumb);
 		else	cellList.insert(cellList.begin(), thumb);
 	}
-
-	//[headerView setCells:cellList];
-	[footerView setCells:cellList];
+   
 }
 
 - (void)setShowsResizeIndicator:(BOOL)flag onRight:(BOOL)onRight
