@@ -15,7 +15,7 @@ function error () { printf >&2 "%s\n\nPlease see README.md for build instruction
 # ========================================================
 
 name=TextMate
-ver=2.0
+ver=2.0f
 rev=10000
 min_os=10.7
 

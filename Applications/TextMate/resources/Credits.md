@@ -1,3 +1,11 @@
+## TextMate
+
+The source for TextMate is released under the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+TextMate is a trademark of Allan Odgaard.
+
+This build is a fork of TextMate maintained [here](https://github.com/jwhitehorn/textmate).
+
 ## Oniguruma
 
 Copyright (c) K.Kosako <sndgk393@ybb.ne.jp>
