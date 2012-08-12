@@ -2,6 +2,8 @@ To get started right away with TextMate 2, you can download a perfectly free bin
 
 Or, [click here](https://github.com/jwhitehorn/textmate/wiki/building) for instructions on how to compile it.
 
+![textmate](https://raw.github.com/jwhitehorn/textmate/master/textmate.png)
+
 ## Modifications & Licensing
 
 The GPL sucks.
