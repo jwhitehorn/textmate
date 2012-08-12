@@ -84,6 +84,7 @@ static void DrawSpinner (NSRect cellFrame, BOOL isFlipped, NSColor* color, doubl
 
 - (void)drawWithFrame:(NSRect)cellFrame inView:(NSView*)controlView
 {
+	[self setTextColor:[NSColor whiteColor]];
 	if([controlView respondsToSelector:@selector(indentationPerLevel)])
 	{
 		CGFloat const extra = [(NSOutlineView*)controlView indentationPerLevel];

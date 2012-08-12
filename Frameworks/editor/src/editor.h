@@ -95,6 +95,7 @@ namespace ng
 		kCopy,
 		kCopySelectionToFindPboard,
 		kCopySelectionToReplacePboard,
+		kCopySelectionToYankPboard,
 		kPaste,
 		kPastePrevious,
 		kPasteNext,
