@@ -237,11 +237,6 @@ static NSURL* ParentForURL (NSURL* url)
 
 		switch(type)
 		{
-			case FSItemURLTypeFolder:
-			case FSItemURLTypeUnknown:
-				return [self pushURL:itemURL];
-			break;
-
 			case FSItemURLTypePackage:
 				[itemsToAnimate addObject:item];
 				[[NSWorkspace sharedWorkspace] openFile:itemURL.path];
