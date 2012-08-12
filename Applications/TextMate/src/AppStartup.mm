@@ -38,7 +38,7 @@ OAK_DEBUG_VAR(AppStartup);
 		NO_obj, @"ApplePressAndHoldEnabled",
 		@25,    @"NSRecentDocumentsLimit",
 		nil]];
-	RegisterDefaults();
+	//RegisterDefaults();
 	[[NSUserDefaults standardUserDefaults] setObject:NO_obj forKey:@"NSQuitAlwaysKeepsWindows"];
 	disableSessionRestore = ([NSEvent slModifierFlags] & NSShiftKeyMask) == NSShiftKeyMask;
 
@@ -82,6 +82,7 @@ OAK_DEBUG_VAR(AppStartup);
 	}
 
 	bundles::build_index(path::join(path::home(), "Library/Application Support/TextMate/Cache"));
+   RegisterDefaults();
 }
 
 - (BOOL)application:(NSApplication*)theApplication openFile:(NSString*)aPath

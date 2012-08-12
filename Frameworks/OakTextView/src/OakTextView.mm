@@ -429,7 +429,7 @@ static std::string shell_quote (std::vector<std::string> paths)
 
 		std::string themeUUID = to_s([[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultsThemeUUIDKey]);
 		if(themeUUID == NULL_STR)
-			themeUUID = settings.get("theme", "71D40D9D-AE48-11D9-920A-000D93589AF6");
+			themeUUID = settings.get("theme", "B80CD0D8-613C-46FD-9C06-A1201108BC2A");
 
 		NSFont* defaultFont       = [NSFont userFixedPitchFontOfSize:0];
 		NSString* defaultFontName = [[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultsFontNameKey] ?: [defaultFont fontName];

@@ -49,7 +49,7 @@ static NSDictionary* default_settings ()
 		@52698,                                             kUserDefaultsRMateServerPortKey,
 		NSFullUserName(),                                   kUserDefaultsLicenseOwnerKey,
 		@"$TM_DISPLAYNAME",                                 kUserDefaultsWindowTitleKey,
-		@"71D40D9D-AE48-11D9-920A-000D93589AF6",            kUserDefaultsThemeUUIDKey,
+		@"B80CD0D8-613C-46FD-9C06-A1201108BC2A",            kUserDefaultsThemeUUIDKey,
 		[defaultFont familyName],                           kUserDefaultsFontNameKey,
 		@([defaultFont pointSize]),                         kUserDefaultsFontSizeKey,
 		YES_obj,                                            kUserDefaultsAntiAliasKey,
