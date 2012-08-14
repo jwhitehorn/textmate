@@ -18,6 +18,7 @@
 #import <text/types.h>
 #import <document/collection.h>
 #import <ns/ns.h>
+#import "Document.h"
 
 OAK_DEBUG_VAR(AppController);
 
@@ -26,15 +27,8 @@ void OakOpenDocuments (NSArray* paths)
 	std::vector<document::document_ptr> documents;
 	for(NSString* path in paths)
 	{
-		if(path::is_directory(to_s(path)))
-		{
-         NSString *source = [[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:@"Default.tm_properties"];     
-         NSString *destination = [NSString stringWithFormat:@"%@/.tm_properties", path];  
-         
-         if ( [[NSFileManager defaultManager] isReadableFileAtPath:source] && ![[NSFileManager defaultManager] isReadableFileAtPath:destination])
-             [[NSFileManager defaultManager] copyItemAtPath:source toPath:destination error:nil];
-
-			document::show_browser(to_s(path));
+		if(path::is_directory(to_s(path))){
+         [Document showBrowser:path];
 		}
 		else
 		{
