@@ -531,7 +531,7 @@ static NSURL* ParentForURL (NSURL* url)
 		FSItem* item = singleItem ? [self.selectedItems lastObject] : nil;
 
 		BOOL showEnclosingFolder = item && [item.url isFileURL] && [@[ @"search", @"scm" ] containsObject:[url scheme]];
-		BOOL showPackageContents = item && [item.url isFileURL] && (path::info([item.path fileSystemRepresentation]) & path::flag::package);
+		BOOL showPackageContents = false; //item && [item.url isFileURL] && (path::info([item.path fileSystemRepresentation]) & path::flag::package);
 		BOOL showOriginal        = item && [item.url isFileURL] && (path::info([item.path fileSystemRepresentation]) & (path::flag::symlink|path::flag::alias));
 		BOOL canCreateFolder     = [self parentForNewFolder] ? YES : NO;
 
