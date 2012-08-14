@@ -28,6 +28,12 @@ void OakOpenDocuments (NSArray* paths)
 	{
 		if(path::is_directory(to_s(path)))
 		{
+         NSString *source = [[[NSBundle mainBundle] resourcePath]stringByAppendingPathComponent:@"Default.tm_properties"];     
+         NSString *destination = [NSString stringWithFormat:@"%@/.tm_properties", path];  
+         
+         if ( [[NSFileManager defaultManager] isReadableFileAtPath:source] && ![[NSFileManager defaultManager] isReadableFileAtPath:destination])
+             [[NSFileManager defaultManager] copyItemAtPath:source toPath:destination error:nil];
+
 			document::show_browser(to_s(path));
 		}
 		else
