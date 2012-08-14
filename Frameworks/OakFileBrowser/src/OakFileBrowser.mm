@@ -357,6 +357,19 @@ static NSURL* ParentForURL (NSURL* url)
 	}
 }
 
+- (void) newFileInSelectedFolder:(id)sender{
+	if(NSString* folder = [self parentForNewFolder])
+	{
+		std::string const dst = path::unique(path::join([folder fileSystemRepresentation], "untitled"));
+    
+      NSString *filename = [NSString stringWithCxxString:dst];
+      [@"" writeToFile:filename atomically:NO encoding:NSStringEncodingConversionAllowLossy error:nil];
+      [filename release];
+      
+      //TODO: actually see if we were successful
+	}
+}
+
 - (void)delete:(id)anArgument
 {
 	BOOL didTrashSomething = NO;
@@ -535,6 +548,7 @@ static NSURL* ParentForURL (NSURL* url)
 			{ nil,                        NULL,                                                          YES, YES },
 			{ @"Rename",                  @selector(editSelectedEntries:),          singleItem && pathsExist, YES },
 			{ @"Duplicate",               @selector(duplicateSelectedEntries:),                   pathsExist, YES },
+			{ @"New File",                @selector(newFileInSelectedFolder:),                           YES, YES },
 			{ @"New Folder",              @selector(newFolderInSelectedFolder:),             canCreateFolder, YES },
 			{ nil,                        NULL,                                                          YES, YES },
 			{ @"Move to Trash",           @selector(delete:),                                     pathsExist, YES },
