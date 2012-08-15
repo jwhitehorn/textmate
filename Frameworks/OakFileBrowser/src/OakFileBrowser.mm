@@ -363,10 +363,12 @@ static NSURL* ParentForURL (NSURL* url)
 		std::string const dst = path::unique(path::join([folder fileSystemRepresentation], "untitled"));
     
       NSString *filename = [NSString stringWithCxxString:dst];
-      [@"" writeToFile:filename atomically:NO encoding:NSStringEncodingConversionAllowLossy error:nil];
-      [filename release];
-      
-      //TODO: actually see if we were successful
+      bool success = [@"" writeToFile:filename atomically:NO encoding:NSStringEncodingConversionAllowLossy error:nil];
+      if(success){
+         [outlineViewDelegate editURL:[NSURL fileURLWithPath:filename]];
+      }else{
+         OakRunIOAlertPanel("Failed to create new file in “%s”.", path::parent([folder fileSystemRepresentation]).c_str());
+      }
 	}
 }
 
