@@ -104,7 +104,7 @@ done
 # =====================================
 
 mkdir -p "$builddir/Frameworks/SoftwareUpdate/fixtures"
-DST=$(cd "$builddir/Frameworks/SoftwareUpdate/fixtures"; pwd) make -C Frameworks/SoftwareUpdate/fixtures
+DST=$(cd >/dev/null "$builddir/Frameworks/SoftwareUpdate/fixtures"; pwd) make -C Frameworks/SoftwareUpdate/fixtures
 
 # # Necessary if you do distribution builds (which should include some default bundles)
 # builddir="$builddir" bin/create_default_bundles_tbz
