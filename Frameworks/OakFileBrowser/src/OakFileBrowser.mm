@@ -357,6 +357,21 @@ static NSURL* ParentForURL (NSURL* url)
 	}
 }
 
+- (void) newFileInSelectedFolder:(id)sender{
+	if(NSString* folder = [self parentForNewFolder])
+	{
+		std::string const dst = path::unique(path::join([folder fileSystemRepresentation], "untitled"));
+    
+      NSString *filename = [NSString stringWithCxxString:dst];
+      bool success = [@"" writeToFile:filename atomically:NO encoding:NSStringEncodingConversionAllowLossy error:nil];
+      if(success){
+         [outlineViewDelegate editURL:[NSURL fileURLWithPath:filename]];
+      }else{
+         OakRunIOAlertPanel("Failed to create new file in “%s”.", path::parent([folder fileSystemRepresentation]).c_str());
+      }
+	}
+}
+
 - (void)delete:(id)anArgument
 {
 	BOOL didTrashSomething = NO;
@@ -518,7 +533,7 @@ static NSURL* ParentForURL (NSURL* url)
 		FSItem* item = singleItem ? [self.selectedItems lastObject] : nil;
 
 		BOOL showEnclosingFolder = item && [item.url isFileURL] && [@[ @"search", @"scm" ] containsObject:[url scheme]];
-		BOOL showPackageContents = item && [item.url isFileURL] && (path::info([item.path fileSystemRepresentation]) & path::flag::package);
+		BOOL showPackageContents = false; //item && [item.url isFileURL] && (path::info([item.path fileSystemRepresentation]) & path::flag::package);
 		BOOL showOriginal        = item && [item.url isFileURL] && (path::info([item.path fileSystemRepresentation]) & (path::flag::symlink|path::flag::alias));
 		BOOL canCreateFolder     = [self parentForNewFolder] ? YES : NO;
 
@@ -535,6 +550,7 @@ static NSURL* ParentForURL (NSURL* url)
 			{ nil,                        NULL,                                                          YES, YES },
 			{ @"Rename",                  @selector(editSelectedEntries:),          singleItem && pathsExist, YES },
 			{ @"Duplicate",               @selector(duplicateSelectedEntries:),                   pathsExist, YES },
+			{ @"New File",                @selector(newFileInSelectedFolder:),                           YES, YES },
 			{ @"New Folder",              @selector(newFolderInSelectedFolder:),             canCreateFolder, YES },
 			{ nil,                        NULL,                                                          YES, YES },
 			{ @"Move to Trash",           @selector(delete:),                                     pathsExist, YES },
