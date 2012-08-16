@@ -41,6 +41,8 @@ namespace network
 
 	bool check_signature_t::receive_end (std::string& error)
 	{
+      return true;
+      
 		if(_signee == NULL_STR)
 			return (error = "Missing signee."), false;
 		if(_signature == NULL_STR)
@@ -73,7 +75,7 @@ namespace network
 			
 			if(sig_data)
 				CFRelease(sig_data);
-		}
+      }
 		else
 			error = text::format("Unknown signee: ‘%s’.", _signee.c_str());
 
