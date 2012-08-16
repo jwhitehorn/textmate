@@ -8,7 +8,7 @@ function error () { printf >&2 "%s\n\nPlease see README.md for build instruction
 
 : ${builddir:=$HOME/build/TextMate}
 : ${identity:=-}
-: ${rest_api:=https://api.textmate.org}
+: ${rest_api:=https://gist.github.com}
 
 # ========================================================
 # = Application name, version, revision, and required OS =
