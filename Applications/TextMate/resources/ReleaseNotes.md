@@ -3,6 +3,7 @@
 Forked TextMate from [https://github.com/jwhitehorn/textmate](https://github.com/jwhitehorn/textmate).
 
 ***
+
 ## 2012-08-19
 
 * Various improvements in paragraph definition and wrapping:
