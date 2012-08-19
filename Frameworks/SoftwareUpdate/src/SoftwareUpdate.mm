@@ -152,10 +152,16 @@ static SoftwareUpdate* SharedInstance;
 	NSURL* url = [someOptions objectForKey:@"infoURL"];
 	std::string error = NULL_STR;
 
+   auto info = sw_update::download_info(to_s([url absoluteString]), &error);
+
 	NSMutableDictionary* res = [[someOptions mutableCopy] autorelease];
 
-	[res setObject:@"foo" forKey:@"url"];
-   [res setObject:[NSNumber numberWithInteger:0] forKey:@"version"];
+   if(error != NULL_STR){	  	
+      [res setObject:[NSString stringWithCxxString:error] forKey:@"error"];	  	
+   }else{
+      [res setObject:[NSString stringWithCxxString:info.url] forKey:@"url"];
+      [res setObject:@(info.version) forKey:@"version"];  	
+   }
 
 
 	[self performSelectorOnMainThread:@selector(didPerformBackgroundVersionCheck:) withObject:res waitUntilDone:NO];

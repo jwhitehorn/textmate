@@ -124,6 +124,8 @@ static NSString* contact_info ()
 
 void OakSubmitNewCrashReportsInBackground (NSString* url, NSString* processName)
 {
+   return; //HACK
+   
 	[[NSUserDefaults standardUserDefaults] registerDefaults:@{ kUserDefaultsCrashReportsContactInfoKey : contact_info() }];
 	if([[NSUserDefaults standardUserDefaults] boolForKey:kUserDefaultsDisableCrashReportingKey])
 		return;
