@@ -445,7 +445,6 @@ static std::string shell_quote (std::vector<std::string> paths)
 		NSString* defaultFontName = [[NSUserDefaults standardUserDefaults] stringForKey:kUserDefaultsFontNameKey] ?: [defaultFont fontName];
 		CGFloat defaultFontSize   = [[NSUserDefaults standardUserDefaults] floatForKey:kUserDefaultsFontSizeKey] ?: [defaultFont pointSize];
 
-		theme          = parse_theme(bundles::lookup(themeUUID));
 		fontName       = settings.get("fontName", to_s(defaultFontName));
 		fontSize       = settings.get("fontSize", (int32_t)defaultFontSize);
 		showInvisibles = settings.get("showInvisibles", false);
@@ -800,7 +799,8 @@ static std::string shell_quote (std::vector<std::string> paths)
 
 		case bundles::kItemTypeTheme:
 		{
-			[self setTheme:parse_theme(item)];
+			OakDocumentView* documentView = (OakDocumentView*)[[self enclosingScrollView] superview];
+			[documentView setThemeWithUUID:[NSString stringWithCxxString:item->uuid()]];
 		}
 		break;
 	}
