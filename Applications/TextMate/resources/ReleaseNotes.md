@@ -40,7 +40,6 @@ Forked TextMate from [https://github.com/jwhitehorn/textmate](https://github.com
 
 [1]: https://github.com/textmate/textmate/issues/183
 
->>>>>>> edcaffed91c204c8d516b2e3f72bf665996e5c26
 ## 2012-08-15
 
 * Minor tweak to how pasting works. Previously if you did a multiline selection and on the last line selected to the end of the line but excluded the actual newline, copy and pasted that somewhere else, it would treat it as you had also copied the newline. This is now only the case when you are pasting on a line that is not empty.
@@ -67,7 +66,6 @@ Forked TextMate from [https://github.com/jwhitehorn/textmate](https://github.com
 	1. `simple` — this is the indent behavior which was previously implied when setting `disableIndentCorrections`. It indents the paste to the position of the caret and works well for Python.
 	2. `disable` — the text is inserted as-is without indenting it.
 	3. «unset» — indent the paste based on the indent patterns of the current scope.
->>>>>>> 8a5fb1636752165a3e76d7f04aa0c2ee077913fc
 
 ## 2012-08-14
 
@@ -79,7 +77,6 @@ Forked TextMate from [https://github.com/jwhitehorn/textmate](https://github.com
 * Bundle items with both a tab trigger and key equivalent now show both. *[Adam Strzelecki]*
 * The bundle menu in the status bar can now be opened via ⌥F1 and will default to select the bundle for the current language. *[Adam Strzelecki]*
 * Further fixes to handling of txmt: URLs without a file argument.
->>>>>>> ee399e9253eb0f236c3b348bdf0cce4e833e4080
 
 ## 2012-08-13
 
